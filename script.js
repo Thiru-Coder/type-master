@@ -119,9 +119,9 @@ function checkForErrors() {
 // Checking if paragraph is completed with accuracy within time limit
 
 function checkIfComplete(typed, paragraph, errorCount) {
-  console.log(typed, paragraph, errorCount);
+  // console.log(typed, paragraph, errorCount);
 
-  if (errorCount === 0) {
+  if (typed === paragraph && errorCount === 0) {
     accuracyContainer.classList.add("full"); // Add BG effects only accurate within time limit
     gameComplete();
   }
