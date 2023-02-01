@@ -1,0 +1,224 @@
+body {
+  background: linear-gradient(#f5f7fa, #b8c6db);
+  color: #1a1a1a;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+#title {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  color: #667ae0;
+}
+
+#paragraph {
+  background-color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  margin: 10px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgb(0 0 0 / 10%);
+  cursor: not-allowed;
+}
+
+#userInput {
+  background-color: #fff;
+  color: #444;
+  height: 80px;
+  width: 50%;
+  font-size: 1.5rem;
+  margin: 15px;
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+#userInput:focus {
+  outline-color: #667ae0;
+}
+
+#popup {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5rem;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+}
+
+#popupInfos {
+  display: flex;
+  align-items: center;
+}
+
+#timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 10px;
+  bottom: 20px;
+  min-width: 78px;
+  min-height: 90px;
+  font-family: "Roboto", sans-serif;
+  border-radius: 20%;
+  font-size: 18px;
+  box-shadow: 1px 1px 6px rgb(0 0 0 / 40%);
+  transition: all 0.5s;
+}
+
+#timer.more {
+  background-color: hsl(129, 71%, 53%);
+}
+
+#timer.mid {
+  background-color: hsl(14, 71%, 53%);
+}
+
+#timer.less {
+  background-color: hsl(0, 71%, 53%);
+}
+
+#errors,
+#accuracy,
+#cpm,
+#wpm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.11);
+  background-color: #eee;
+  box-shadow: 0 14px 26px rgb(0 0 0 / 4%);
+  font-size: 20px;
+  padding: 20px;
+  margin: 10px;
+  min-width: 100px;
+  border-radius: 10px;
+}
+
+#errors:hover,
+#accuracy:hover,
+#cpm:hover,
+#wpm:hover {
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
+    0 24px 46px rgba(220, 233, 255, 0.48);
+  transform: scale(1.005);
+  cursor: pointer;
+}
+
+#accuracy.full {
+  background: linear-gradient(
+    to right,
+    rgb(123, 31, 162),
+    rgb(103, 58, 183),
+    rgb(184, 39, 134),
+    rgb(123, 31, 162)
+  );
+  background-size: 400% 400%;
+  animation: background-pan 8s ease infinite;
+  color: #fff;
+}
+
+@keyframes background-pan {
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.popupInfo {
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  color: #2e2e2e;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #ffc600;
+  border-radius: 4px;
+}
+
+.timeData,
+.errorsData,
+.accuracyData,
+.cpmData,
+.wpmData {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+#restartBtn {
+  display: none;
+  position: absolute;
+  bottom: 12px;
+  right: 25px;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  padding: 8px 10px;
+  font-size: 18px;
+  border-radius: 3px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+#restartBtn:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.wrongInput {
+  color: red;
+  text-decoration: underline;
+}
+
+.correctInput {
+  color: rgb(21, 162, 21);
+}
+
+.overlay {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+#progressBar.active {
+  background-color: #476ce4;
+  height: 4px;
+  width: 100%;
+  animation: grow 60s linear;
+  transform-origin: left;
+}
+
+@keyframes grow {
+  0% {
+    transform: scaleX(0);
+  }
+}

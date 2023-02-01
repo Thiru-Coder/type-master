@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="description" content="System Task for VirtualMaze." />
+    <meta name="author" content="Thiruvalluvan" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Type Master</title>
+  </head>
+
+  <body>
+    <div id="mainContainer">
+      <h1 id="title">Type Master</h1>
+
+      <div id="paragraph">Click below to start the game.</div>
+      <textarea
+        id="userInput"
+        placeholder="Type the paragraph here."
+        oninput="handleInput()"
+        onfocus="startGame()"
+      ></textarea>
+      <div id="progressBar"></div>
+
+      <div id="timer" class="more">
+        <div>Time</div>
+        <div class="timeData">60s</div>
+      </div>
+    </div>
+
+    <div id="popup">
+      <div id="popupInfos">
+        <div id="wpm">
+          <div class="popupInfo">WPM</div>
+          <div class="wpmData">100</div>
+        </div>
+        <div id="cpm">
+          <div class="popupInfo">CPM</div>
+          <div class="cpmData">100</div>
+        </div>
+        <div id="errors">
+          <div class="popupInfo">Errors</div>
+          <div class="errorsData">0</div>
+        </div>
+        <div id="accuracy">
+          <div class="popupInfo">% Accuracy</div>
+          <div class="accuracyData">0</div>
+        </div>
+      </div>
+      <button id="restartBtn" onclick="resetValues()">Restart</button>
+    </div>
+
+    <!-- link the JavaScript file here -->
+    <script src="script.js"></script>
+  </body>
+</html>
