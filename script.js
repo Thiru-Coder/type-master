@@ -132,12 +132,21 @@ function checkIfComplete(typed, paragraph, errorCount) {
 function startGame() {
   resetValues();
   createSpanForParagraph();
+
   progressBar.style.animationDuration = `${duration}s`;
   progressBar.classList.add("active");
 
   // clear and start a new timer
   clearInterval(timer);
   timer = setInterval(updateTimer, 1000);
+}
+
+//OnBlur the stop Progress
+function stopProgress() {
+  progressBar.classList.remove("active");
+  clearInterval(timer);
+  paragraphText.textContent = "Click below to start the game.";
+  durationText.textContent = duration + "s";
 }
 
 // Called from First function as well as reset button

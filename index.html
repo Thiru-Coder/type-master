@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <meta name="description" content="System Task for VirtualMaze." />
+    <meta
+      name="description"
+      content="A Simple Typing Test Application written in Vanilla Javascript."
+    />
     <meta name="author" content="Thiruvalluvan" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,6 +30,7 @@
         placeholder="Type the paragraph here."
         oninput="handleInput()"
         onfocus="startGame()"
+        onblur="stopProgress()"
       ></textarea>
       <div id="progressBar"></div>
 
