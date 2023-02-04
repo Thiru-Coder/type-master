@@ -68,6 +68,15 @@ body {
   align-items: center;
 }
 
+@media screen and (width < 768px) {
+  #popupInfos {
+    flex-direction: column;
+  }
+  body {
+    overflow-y: visible;
+  }
+}
+
 #timer {
   display: flex;
   flex-direction: column;
