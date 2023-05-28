@@ -1,30 +1,36 @@
 // Main Container
-let mainContainer = document.getElementById("mainContainer");
+const mainContainer = document.getElementById("mainContainer");
 
 // Getting Time Limit Contents
-let durationText = document.querySelector(".timeData");
-let timeContainer = document.getElementById("timer");
+const durationText = document.querySelector(".timeData");
+const timeContainer = document.getElementById("timer");
 
 //Get Paragraph Text and Prevent from clicking
-let paragraphText = document.getElementById("paragraph");
+const paragraphText = document.getElementById("paragraph");
 paragraphText.addEventListener("contextmenu", (e) => {
   e.preventDefault();
 });
 
+// Get the TextArea and Prevent from pasting text
+const textarea = document.querySelector("textarea");
+textarea.addEventListener("paste", (e) => {
+  e.preventDefault();
+});
+
 // User Input from Text Area
-let userInput = document.getElementById("userInput");
+const userInput = document.getElementById("userInput");
 
 // Progress-bar
-let progressBar = document.getElementById("progressBar");
+const progressBar = document.getElementById("progressBar");
 
 //Getting Popup Contents
-let popup = document.querySelector("#popup"); //Popup Container
-let accuracyContainer = document.getElementById("accuracy"); //Accuracy Container
-let accuracyValue = document.querySelector(".accuracyData"); //Accuracy
-let errorValue = document.querySelector(".errorsData"); //Errors
-let cpmValue = document.querySelector(".cpmData"); //Get Characters Per Minute Data
-let wpmValue = document.querySelector(".wpmData"); //Get Words Per Minute Data
-let restartBtn = document.getElementById("restartBtn"); //Restart Button
+const popup = document.querySelector("#popup"); //Popup Container
+const accuracyContainer = document.getElementById("accuracy"); //Accuracy Container
+const accuracyValue = document.querySelector(".accuracyData"); //Accuracy
+const errorValue = document.querySelector(".errorsData"); //Errors
+const cpmValue = document.querySelector(".cpmData"); //Get Characters Per Minute Data
+const wpmValue = document.querySelector(".wpmData"); //Get Words Per Minute Data
+const restartBtn = document.getElementById("restartBtn"); //Restart Button
 
 // Set Time Limit to Complete the Type Game
 let duration = 60;
@@ -32,7 +38,6 @@ let duration = 60;
 // Paragraph Content to Type
 let paragraph =
   "The greatest glory in living lies not in never falling, but in rising every time we fall.";
-// "Thiruvalluvan";
 
 // For Time and Accuracy
 let timeRemaining = duration;
@@ -40,23 +45,11 @@ let timeSpent = 0;
 let totalErrors = 0;
 let errors = 0;
 let accuracy = 0;
+let accuracyVal = 0;
 let characterTyped = 0;
 let timer = null;
 
 /***************************************************************** Variables Above ************************************************************/
-
-/* FUNCTIONS USED
-
-1 - createSpanForParagraph
-2 - handleInput
-3 - checkForErrors
-4 - checkIfComplete
-5 - startGame
-6 - stopProgress
-7 - resetValues
-8 - updateTimer
-9 - gameComplete
-*/
 
 function createSpanForParagraph() {
   paragraphText.textContent = null;
@@ -98,8 +91,23 @@ function handleInput() {
   errorValue.textContent = totalErrors + errors;
 
   // update accuracy value of user input
-  let correctCharacters = characterTyped - (totalErrors + errors);
-  let accuracyVal = (correctCharacters / characterTyped) * 100;
+  let correctCharacters = 0;
+  for (let i = 0; i < currentInputArray.length; i++) {
+    let typedChar = currentInputArray[i];
+    let paragraphChar = paragraphSpanArray[i].innerText;
+
+    // character not currently typed
+    if (typedChar == null) {
+      continue;
+    }
+
+    // correct character with green highlight
+    if (typedChar === paragraphChar) {
+      correctCharacters++;
+    }
+  }
+
+  accuracyVal = (correctCharacters / characterTyped) * 100;
   accuracyValue.textContent = Math.round(accuracyVal);
 
   checkIfComplete(currentInputArray.length, paragraphSpanArray.length, errors);
@@ -140,7 +148,9 @@ function checkIfComplete(typed, paragraph, errorCount) {
   // console.log(typed, paragraph, errorCount);
 
   if (typed === paragraph && errorCount === 0) {
-    accuracyContainer.classList.add("full"); // Add BG effects only accurate within time limit
+    if (accuracyVal >= 100) {
+      accuracyContainer.classList.add("full"); // Add BG effects only accurate within time limit
+    }
     gameComplete();
   }
 }
