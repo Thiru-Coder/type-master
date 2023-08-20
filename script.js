@@ -51,6 +51,14 @@ let timer = null;
 
 /***************************************************************** Variables Above ************************************************************/
 
+// User Input Events
+userInput.addEventListener("focus", startGame);
+userInput.addEventListener("input", handleInput);
+userInput.addEventListener("blur", stopProgress);
+
+// Restart Game Event
+restartBtn.addEventListener("click", resetValues);
+
 function createSpanForParagraph() {
   paragraphText.textContent = null;
 
@@ -87,23 +95,32 @@ function handleInput() {
 
   checkForErrors();
 
-  // number of errors
-  errorValue.textContent = totalErrors + errors;
+  // calculate the total number of errors (initial and corrected)
+  totalErrors += errors;
+
+  // update error value
+  errorValue.textContent = totalErrors;
 
   // update accuracy value of user input
   let correctCharacters = 0;
   for (let i = 0; i < currentInputArray.length; i++) {
     let typedChar = currentInputArray[i];
-    let paragraphChar = paragraphSpanArray[i].innerText;
 
-    // character not currently typed
-    if (typedChar == null) {
-      continue;
-    }
+    if (i < paragraphSpanArray.length) {
+      let paragraphChar = paragraphSpanArray[i].innerText;
 
-    // correct character with green highlight
-    if (typedChar === paragraphChar) {
-      correctCharacters++;
+      // character not currently typed
+      if (typedChar == null) {
+        continue;
+      }
+
+      // correct character with green highlight
+      if (typedChar === paragraphChar) {
+        correctCharacters++;
+      }
+    } else {
+      alert("Paragraph length exceeded!");
+      break;
     }
   }
 

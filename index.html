@@ -28,9 +28,6 @@
       <textarea
         id="userInput"
         placeholder="Type the paragraph here."
-        onfocus="startGame()"
-        oninput="handleInput()"
-        onblur="stopProgress()"
       ></textarea>
       <div id="progressBar"></div>
 
@@ -59,7 +56,7 @@
           <div class="accuracyData">0</div>
         </div>
       </div>
-      <button id="restartBtn" onclick="resetValues()">Restart</button>
+      <button id="restartBtn">Restart</button>
     </div>
 
     <!-- link the JavaScript file here -->
